@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${SENHA_BANCO}"
+      MYSQL_DATABASE: "${BANCO}"
+    ports:
+      - 3306:3306
+    networks:
+      - atividade-node
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - atividade-node
+    volumes:
+      - db-atividade-node:/home/matheus/git/Atividades-NodeJs/data
+    depends_on:
+      - db
+
+volumes:
+  db-atividade-node:
+
+
+networks:
+  atividade-node:
+    driver: bridge
