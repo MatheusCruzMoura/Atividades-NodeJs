@@ -1,0 +1,26 @@
+{
+  "name": "atividades-nodejs",
+  "version": "1.0.0",
+  "description": "Atividade de Node.js da Formação Node e React - Extensão Tecnológica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatheusCruzMoura/Atividades-NodeJs.git"
+  },
+  "author": "Matheus Cruz de Moura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatheusCruzMoura/Atividades-NodeJs/issues"
+  },
+  "homepage": "https://github.com/MatheusCruzMoura/Atividades-NodeJs#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20"
+  }
+}
