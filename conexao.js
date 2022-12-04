@@ -11,12 +11,13 @@ function execSQLQuery(sqlQry, res) {
     });
 
     connection.query(sqlQry, function (error, results, fields) {
-        if (error)
+        if (error) {
             res.json(error);
-        else
+        } else {
             res.json(results);
+            console.log('executou!');
+        }
         connection.end();
-        console.log('executou!');
     });
 }
 
