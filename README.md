@@ -19,7 +19,13 @@ Atividades de Node, React Native e React da Extensão Tecnológica Formação No
         npm install --force
         ```
 
-3. **Containers do banco**
+3. **Variáveis de ambiente**
+    * Entrar na pasta ```api-node```
+    * Criar um arquivo com o nome ```.env```
+    * Criar as variáveis de ambiente utilizando o arquico ```.env.exemple``` como exmplo
+
+######
+4. **Containers do banco**
     * **Levantando** - dentro da pasta api-node
         ```docker
         docker compose up -d
