@@ -4,18 +4,6 @@ const router = express.Router();
 // const mysql = require('mysql2');
 const connect = require('../conexao.js');
 
-// Handling GET requests
-router.get('/', (req, res) => {
-    res.send('A API está rodando ' + 'neste servidor')
-    res.end()
-})
-
-// GET node version
-router.get('/node', (req, res) => {
-    res.send('Aplicação rodando no node v18.12.1')
-    res.end()
-})
-
 // GET todos os clientes
 router.get('/clientes', (req, res) => {
     res.setHeader("Access-Control-Allow-Origin", "*");

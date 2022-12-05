@@ -22,7 +22,7 @@ app.get('/node', (req, res) => {
 })
 
 // Rotas dos clientes
-app.use("/", userRoutes)
+app.use(userRoutes)
 
 // Port Number
 const PORT = process.env.PORT || 5001;
