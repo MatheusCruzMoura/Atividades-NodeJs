@@ -62,12 +62,14 @@ export default function Index() {
 
             <Button
                 title="Entrar"
-                buttonStyle={[styles.button, { marginTop: 30, backgroundColor: '#1D99FA' }]}
+                buttonStyle={[styles.button, { backgroundColor: '#1D99FA' }]}
+                containerStyle={{ marginTop: 30 }}
             />
 
             <Button
                 title="Cadastrar-se"
-                buttonStyle={[styles.button, { marginTop: 10, backgroundColor: '#FC4A35' }]}
+                buttonStyle={[styles.button, { backgroundColor: '#FC4A35' }]}
+                containerStyle={{ marginTop: 20 }}
             />
         </View>
     );
