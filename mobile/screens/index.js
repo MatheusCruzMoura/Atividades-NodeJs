@@ -18,8 +18,8 @@ export default function Index() {
     }
 
     useEffect(() => {
-        setVisivel(false)
-        setEye('eye-slash')
+        setVisivel(true)
+        setEye('eye')
     }, [])
 
     return (
