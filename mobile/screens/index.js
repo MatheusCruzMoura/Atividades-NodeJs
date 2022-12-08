@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Avatar, Input, Button, Icon } from "react-native-elements";
 
-export default function Index() {
+export default function Index({ navigation }) {
 
     const [getVisivel, setVisivel] = useState();
     const [getEye, setEye] = useState();
@@ -64,12 +64,14 @@ export default function Index() {
                 title="Entrar"
                 buttonStyle={[styles.button, { backgroundColor: '#1D99FA' }]}
                 containerStyle={{ marginTop: 30 }}
+                onPress={() => navigation.navigate('Contatos')}
             />
 
             <Button
                 title="Cadastrar-se"
                 buttonStyle={[styles.button, { backgroundColor: '#FC4A35' }]}
                 containerStyle={{ marginTop: 20 }}
+                onPress={() => navigation.navigate('CadastroUsuario')}
             />
         </View>
     );
