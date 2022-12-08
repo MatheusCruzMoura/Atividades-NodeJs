@@ -30,7 +30,6 @@ export default function Index({ navigation }) {
             if (value.length > 0) {
                 setErroInputNuloEmail(0)
             } else {
-                console.log(getSenha, getSenhaRepetida)
                 setErroInputNuloEmail(1)
             }
         },
