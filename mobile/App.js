@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Index from './screens';
 import CadastroUsuario from './screens/cadastroUsuario';
+import ListaContatos from './screens/listaContatos';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,6 +18,7 @@ function App() {
         <Stack.Navigator screenOptions={{ headerShown: false }}>
           <Stack.Screen name="Index" component={Index} />
           <Stack.Screen name="CadastroUsuario" component={CadastroUsuario} />
+          <Stack.Screen name="ListaContatos" component={ListaContatos} />
         </Stack.Navigator>
       </NavigationContainer>
     </Fragment>

@@ -64,7 +64,7 @@ export default function Index({ navigation }) {
                 title="Entrar"
                 buttonStyle={[styles.button, { backgroundColor: '#1D99FA' }]}
                 containerStyle={{ marginTop: 30 }}
-                onPress={() => navigation.navigate('Contatos')}
+                onPress={() => navigation.navigate('ListaContatos')}
             />
 
             <Button
