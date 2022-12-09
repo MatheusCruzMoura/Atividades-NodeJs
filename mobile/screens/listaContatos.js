@@ -63,7 +63,7 @@ export default function ListaContatos({ navigation }) {
                                     size={30}
                                 />
                             }
-                            onPress={() => navigation.goBack()}
+                            onPress={() => navigation.navigate('CadastroContato')}
                         />
                     }
                     centerComponent={
