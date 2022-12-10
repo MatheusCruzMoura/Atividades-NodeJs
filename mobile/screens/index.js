@@ -69,7 +69,8 @@ export default function Index({ navigation }) {
 
             <Button
                 title="Cadastrar-se"
-                buttonStyle={[styles.button, { backgroundColor: '#FC4A35' }]}
+                type="outline"
+                buttonStyle={[styles.button, { backgroundColor: 'rgba(255, 255, 255, 0.075)' }]}
                 containerStyle={{ marginTop: 20 }}
                 onPress={() => navigation.navigate('CadastroUsuario')}
             />

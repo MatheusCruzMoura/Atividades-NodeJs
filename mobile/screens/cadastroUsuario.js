@@ -1,6 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Header, Button, Icon, Input } from "react-native-elements";
+import axios from 'axios';
+
+import { API_HOST } from '@env';
+const API_URL = `http://${API_HOST}/usuarios`
 
 export default function Index({ navigation }) {
 
@@ -63,7 +67,7 @@ export default function Index({ navigation }) {
         }
     }
 
-    function salvar() {
+    async function salvar() {
         if (getEmail == undefined) {
             setErroInputNuloEmail(1)
         } else if (getSenha == undefined) {
@@ -72,7 +76,14 @@ export default function Index({ navigation }) {
             setErroSenhasDiferentes(1)
             setErroInputSenhaRepetida('Campo obrigatório!')
         } else if (getSenha == getSenhaRepetida) {
-            navigation.navigate('Index')
+            await axios.post(API_URL, {
+                email: getEmail,
+                senha: getSenha
+            }).then(function (response) {
+                navigation.navigate('Index')
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 
