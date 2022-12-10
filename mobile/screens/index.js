@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar, StyleSheet, Text, View } from 'react-native';
 import { Avatar, Input, Button, Icon } from "react-native-elements";
+import axios from 'axios';
+
+import { API_HOST } from '@env';
+const API_URL = `http://${API_HOST}/usuarios/login`
 
 export default function Index({ navigation }) {
 
+    const [getEmail, setEmail] = useState();
+    const [getSenhaLogin, setSenhaLogin] = useState();
     const [getVisivel, setVisivel] = useState();
     const [getEye, setEye] = useState();
 
@@ -14,6 +20,21 @@ export default function Index({ navigation }) {
         } else {
             setVisivel(true)
             setEye('eye')
+        }
+    }
+
+    async function login() {
+        if (getEmail != undefined && getSenhaLogin != undefined) {
+            await axios.post(API_URL, {
+                email: getEmail,
+                senha: getSenhaLogin
+            }).then(function (response) {
+                if (response.data.token != undefined) {
+                    navigation.navigate('ListaContatos')
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 
@@ -35,15 +56,20 @@ export default function Index({ navigation }) {
             <Text style={styles.texto}>Bem-vindo ao React Native!</Text>
 
             <Input
-                placeholder="Usuário"
-                leftIcon={{ color: '#fff', type: 'font-awesome', name: 'user' }}
+                placeholder="E-mail"
+                value={getEmail}
+                onChangeText={(value) => { setEmail(value) }}
+                leftIcon={{ color: '#fff', type: 'font-awesome', name: 'envelope' }}
                 containerStyle={styles.inputs}
                 inputContainerStyle={styles.inputContainer}
                 style={styles.input}
+                keyboardType="email-address"
             />
 
             <Input
                 placeholder="Senha"
+                value={getSenhaLogin}
+                onChangeText={(value) => { setSenhaLogin(value) }}
                 leftIcon={{ color: '#fff', type: 'font-awesome', name: 'lock' }}
                 rightIcon={
                     <Icon
@@ -64,7 +90,7 @@ export default function Index({ navigation }) {
                 title="Entrar"
                 buttonStyle={[styles.button, { backgroundColor: '#1D99FA' }]}
                 containerStyle={{ marginTop: 30 }}
-                onPress={() => navigation.navigate('ListaContatos')}
+                onPress={() => login()}
             />
 
             <Button
