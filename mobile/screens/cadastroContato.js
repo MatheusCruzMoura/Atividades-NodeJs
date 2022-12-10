@@ -1,13 +1,16 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { Header, Button, Icon, Input } from "react-native-elements";
 import axios from 'axios';
 
-export default function CadastroContato({ navigation }) {
+export default function CadastroContato({ route, navigation }) {
 
+    const [getId, setId] = useState();
     const [getNome, setNome] = useState();
     const [getEmail, setEmail] = useState();
     const [getTelefone, setTelefone] = useState();
+    const [getAcao, setAcao] = useState();
+    const [getExiste, setExiste] = useState();
 
     async function inserirDados() {
         await axios.post('http://professornilson.com/testeservico/clientes', {
@@ -15,16 +18,51 @@ export default function CadastroContato({ navigation }) {
             email: getEmail,
             telefone: getTelefone
         }).then(function (response) {
-            console.log(response);
             navigation.navigate('ListaContatos')
         }).catch(function (error) {
             console.log(error);
         });
     }
 
-    function salvar() {
-        navigation.navigate('ListaContatos')
+    async function alterarDados() {
+        await axios.put("http://professornilson.com/testeservico/clientes/" + getId, {
+            nome: getNome,
+            email: getEmail,
+            telefone: getTelefone
+        }).then(function (response) {
+            // console.log(response);
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
+
+    function excluirDados() {
+        axios.delete("http://professornilson.com/testeservico/clientes/" + getId)
+            .then(function (response) {
+                navigation.navigate('ListaContatos')
+            }).catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    useEffect(() => {
+        setAcao('Cadastrar Contato');
+        setExiste(false)
+
+        if (route.params) {
+            const { id } = route.params;
+            const { nome } = route.params;
+            const { email } = route.params;
+            const { telefone } = route.params;
+
+            setNome(nome);
+            setId(id);
+            setEmail(email);
+            setTelefone(telefone);
+            setAcao('Editar Contato');
+            setExiste(true)
+        }
+    }, []);
 
     return (
         <Fragment>
@@ -51,7 +89,7 @@ export default function CadastroContato({ navigation }) {
                         />
                     }
                     centerComponent={
-                        { text: 'Cadastro de Contato', style: { color: '#fff', fontSize: 20 } }
+                        { text: getAcao, style: { color: '#fff', fontSize: 20 } }
                     }
                 />
 
@@ -87,12 +125,30 @@ export default function CadastroContato({ navigation }) {
                     keyboardType='phone-pad'
                 />
 
-                <Button
-                    title="Salvar"
-                    buttonStyle={[styles.button, { backgroundColor: '#1D99FA' }]}
-                    containerStyle={{ marginTop: 30 }}
-                    onPress={() => inserirDados()}
-                />
+                {getExiste ? (
+                    <Fragment>
+                        <Button
+                            title="Editar"
+                            onPress={() => alterarDados()}
+                            buttonStyle={styles.button}
+                            containerStyle={{ marginTop: 20 }}
+                        />
+                        <Button
+                            title="Excluir"
+                            onPress={() => excluirDados()}
+                            buttonStyle={[styles.button, { backgroundColor: '#ff3933' }]}
+                            containerStyle={{ marginTop: 20 }}
+                        />
+                    </Fragment>
+                ) : (
+                    <Button
+                        title="Salvar"
+                        onPress={() => inserirDados()}
+                        buttonStyle={styles.button}
+                        containerStyle={{ marginTop: 20 }}
+                    />
+                )
+                }
 
             </View>
         </Fragment>
@@ -128,6 +184,7 @@ const styles = StyleSheet.create({
         color: '#fff'
     },
     button: {
-        width: 250
+        width: 250,
+        backgroundColor: '#1D99FA'
     }
 });

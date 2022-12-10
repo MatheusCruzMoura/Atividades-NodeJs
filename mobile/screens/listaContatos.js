@@ -24,7 +24,7 @@ export default function ListaContatos({ navigation }) {
         <ListItem
             bottomDivider
             containerStyle={styles.item}
-            onPress={() => navigation.navigate('Contato', { id: item.id, nome: item.nome, telefone: item.telefone, email: item.email })}
+            onPress={() => navigation.navigate('CadastroContato', { id: item.id, nome: item.nome, email: item.email, telefone: item.telefone })}
         >
             <Avatar
                 size='medium'
