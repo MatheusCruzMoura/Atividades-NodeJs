@@ -37,7 +37,7 @@ router.post('/usuarios/login', (req, res) => {
             if (results.length > 0) {
                 bcrypt.compare(req.body.senha, results[0].senha, function (err, result) {
                     if (result) {
-                        var token = jwt.sign({ email: req.body.email }, process.env.PRIVATE_KEY, { expiresIn: 60 / 2 });
+                        var token = jwt.sign({ email: req.body.email }, process.env.PRIVATE_KEY, { expiresIn: 60 });
                         res.json({ "token": token })
                         res.end()
                     } else {
@@ -51,6 +51,25 @@ router.post('/usuarios/login', (req, res) => {
             };
         }
     );
+})
+
+router.post('/usuarios/auth', (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.header('Access-Control-Allow-Methods', 'POST');
+
+    const authHeader = req.headers.authorization;
+
+    const [bearer, token] = authHeader.split(' ');
+
+    try {
+        const decoded = jwt.verify(token, process.env.PRIVATE_KEY);
+        res.json({ erro: false })
+    } catch (error) {
+        res.json({ erro: true })
+    }
+
+    // console.log({ "Token": token })
+    res.end()
 })
 
 module.exports = router;
