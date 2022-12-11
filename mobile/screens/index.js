@@ -29,6 +29,8 @@ export default function Index({ navigation }) {
                 email: getEmail,
                 senha: getSenhaLogin
             }).then(function (response) {
+                setEmail('')
+                setSenhaLogin('')
                 if (response.data.token != undefined) {
                     navigation.navigate('ListaContatos', { token: response.data.token })
                 }
