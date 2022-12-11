@@ -30,7 +30,7 @@ export default function Index({ navigation }) {
                 senha: getSenhaLogin
             }).then(function (response) {
                 if (response.data.token != undefined) {
-                    navigation.navigate('ListaContatos')
+                    navigation.navigate('ListaContatos', { token: response.data.token })
                 }
             }).catch(function (error) {
                 console.log(error);

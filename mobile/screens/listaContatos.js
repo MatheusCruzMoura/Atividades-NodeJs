@@ -3,11 +3,37 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import { Header, Button, Icon, ListItem, Avatar } from "react-native-elements";
 import axios from 'axios';
 
-export default function ListaContatos({ navigation }) {
+import { API_HOST } from '@env';
+const API_URL_AUTH = `http://${API_HOST}/usuarios/auth`
 
+export default function ListaContatos({ route, navigation }) {
+
+    const [getToken, setToken] = useState();
     const [getData, setData] = useState([]);
 
+    async function validarToken(token) {
+        await axios.post(API_URL_AUTH, {}, {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        }).then(function (response) {
+            if (response.data.erro) {
+                navigation.navigate('Index')
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+    }
+
     useEffect(() => {
+        if (route.params) {
+            const { token } = route.params;
+            setToken(token)
+        }
+
+        if (getToken != undefined) {
+            validarToken(getToken);
+        }
 
         async function resgatarDados() {
             const result = await axios(
