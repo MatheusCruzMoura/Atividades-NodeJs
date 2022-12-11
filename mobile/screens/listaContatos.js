@@ -12,7 +12,7 @@ export default function ListaContatos({ route, navigation }) {
     const [getData, setData] = useState([]);
 
     async function validarToken(token) {
-        await axios.post(API_URL_AUTH, {}, {
+        await axios.get(API_URL_AUTH, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -20,9 +20,7 @@ export default function ListaContatos({ route, navigation }) {
             if (response.data.erro) {
                 navigation.navigate('Index')
             }
-        }).catch(function (error) {
-            console.log(error);
-        });
+        }).catch(error => console.log(error));
     }
 
     useEffect(() => {
