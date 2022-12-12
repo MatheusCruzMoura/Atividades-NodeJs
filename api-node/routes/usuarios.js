@@ -37,7 +37,7 @@ router.post('/usuarios/login', (req, res) => {
             if (results.length > 0) {
                 bcrypt.compare(req.body.senha, results[0].senha, function (err, result) {
                     if (result) {
-                        var token = jwt.sign({ email: req.body.email }, process.env.PRIVATE_KEY, { expiresIn: 5 });
+                        var token = jwt.sign({ email: req.body.email }, process.env.PRIVATE_KEY, { expiresIn: 60 });
                         res.json({ "token": token })
                         res.end()
                     } else {
