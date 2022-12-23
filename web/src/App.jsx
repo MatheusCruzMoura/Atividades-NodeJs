@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 
 function App() {
@@ -7,26 +6,27 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className="container">
+        <section className="login-box">
+          <img className="banner" src="https://bit.ly/3vcjmXV" alt="" />
+
+          <form className="login-form">
+            <h1>Login</h1>
+
+            <div className="login-input-box">
+              <label htmlFor="email">E-mail</label>
+              <input type="email" name="" id="email" />
+            </div>
+
+            <div className="login-input-box">
+              <label htmlFor="senha">Senha</label>
+              <input type="password" name="" id="senha" />
+            </div>
+
+            <button type="submit">Entrar</button>
+          </form>
+        </section>
       </div>
-      <h1 className="titulo">Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p className="paragrafo">
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
