@@ -1,4 +1,8 @@
-.container {
+#root {
+  overflow-x: hidden;
+}
+
+.caixa {
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -35,6 +39,7 @@
   justify-content: space-between;
   width: 50%;
   height: 70%;
+  font-family: sans-serif;
 }
 
 .login-form h1 {
@@ -100,4 +105,44 @@
 .login-form button:active {
   cursor: pointer;
   background-color: #27034d;
+}
+
+.caixa2 {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box2 {
+  width: 45%;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  border-radius: 2vw;
+  box-shadow: 0 5px 15px rgba(119, 119, 119, 0.3);
+  font-family: sans-serif;
+}
+
+.login-form2 {
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-form2 h1 {
+  margin-bottom: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.banner2 {
+  height: 300px;
+}
+
+.login-submit {
+  width: 100px;
 }
