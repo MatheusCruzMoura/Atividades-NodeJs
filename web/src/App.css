@@ -13,6 +13,32 @@
       #4dbcf8, #44c9fa, #00d8f9, #00e5f1, #24f1e1, #5ffbcd);
 }
 
+.home {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.home img {
+  height: 300px;
+  margin-bottom: 50px;
+}
+
+.home-titulo {
+  display: flex;
+  font-size: 3rem;
+  font-family: sans-serif;
+  font-weight: bolder;
+  color: #fff;
+}
+
+.home a {
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #600fb6;
+  font-size: 1.2rem;
+}
+
 .login-box {
   display: flex;
   width: 60%;
@@ -105,6 +131,12 @@
 .login-form button:active {
   cursor: pointer;
   background-color: #27034d;
+}
+
+.login-form a {
+  font-family: sans-serif;
+  text-decoration: none;
+  color: #600fb6;
 }
 
 .caixa2 {
